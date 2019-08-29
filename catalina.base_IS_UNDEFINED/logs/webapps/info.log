@@ -1,0 +1,23 @@
+2019-08-29 15:35:45.329 [main] INFO  com.Jlink.O2oApplicationTests - Starting O2oApplicationTests on DESKTOP-0B1C21B with PID 3440 (started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 15:35:45.410 [main] INFO  com.Jlink.O2oApplicationTests - No active profile set, falling back to default profiles: default
+2019-08-29 15:39:46.065 [main] INFO  com.Jlink.O2oApplicationTests - Starting O2oApplicationTests on DESKTOP-0B1C21B with PID 14616 (started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 15:39:46.071 [main] INFO  com.Jlink.O2oApplicationTests - No active profile set, falling back to default profiles: default
+2019-08-29 15:40:00.292 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 14876 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 15:40:00.302 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 15:41:22.740 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 3644 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 15:41:22.748 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 15:42:33.159 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 6264 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 15:42:33.166 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 15:43:20.227 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 3592 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 15:43:20.246 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 15:50:41.397 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 11220 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 15:50:41.403 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 15:55:42.436 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 13888 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 15:55:42.442 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 16:00:28.508 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 2888 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 16:00:28.515 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 16:01:16.530 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 13188 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 16:01:16.535 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 16:01:47.372 [main] INFO  com.Jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 12348 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-08-29 16:01:47.379 [main] INFO  com.Jlink.Application - No active profile set, falling back to default profiles: default
+2019-08-29 16:01:51.029 [main] INFO  com.Jlink.Application - Started Application in 4.209 seconds (JVM running for 5.885)
