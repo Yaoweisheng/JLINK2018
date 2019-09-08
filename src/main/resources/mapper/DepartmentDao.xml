@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jlink.dao.DepartmentDao" >
+  <resultMap id="BaseResultMap" type="com.jlink.entity.Department" >
+    <result column="dept_id" property="deptId" jdbcType="INTEGER" />
+    <result column="dept_no" property="deptNo" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="dept_addr" property="deptAddr" jdbcType="VARCHAR" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_id" property="modifyId" jdbcType="INTEGER" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="saveDepartment" useGeneratedKeys="true" keyProperty="deptId" parameterType="com.jlink.entity.Department" >
+    insert into department (dept_no, dept_name, dept_addr, create_id, create_date, modify_id, modify_date)
+    values (#{deptNo,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{deptAddr,jdbcType=VARCHAR}, #{createId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=INTEGER}, #{modifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <select id="getDepartmentByNo" resultType="com.jlink.entity.Department" parameterType="String" >
+    select dept_id, dept_no, dept_name, dept_addr, create_id, create_date, modify_id, modify_date
+    from department
+    where dept_no = #{deptNo}
+  </select>
+  <select id="getDepartmentById" resultType="com.jlink.entity.Department" parameterType="Integer" >
+    select dept_id, dept_no, dept_name, dept_addr, create_id, create_date, modify_id, modify_date
+    from department
+    where dept_id = #{deptId}
+  </select>
+  <update id="updateDepartment" keyProperty="deptId">
+    update department
+    set
+    dept_no = #{deptNo},
+    dept_name = #{deptName},
+    dept_addr = #{deptAddr},
+    create_id = #{createId},
+    create_date = #{createDate},
+    modify_id = #{modifyId},
+    modify_date = #{modifyDate}
+    where dept_id = #{deptId}
+  </update>
+  <select id="getDepartmentList" resultType="com.jlink.entity.Department">
+    select dept_id, dept_no, dept_name, dept_addr, create_id, create_date, modify_id, modify_date
+    from department
+  </select>
+  <select id="getLastRootNo" resultType="String">
+    select MAX(dept_no)
+    from department
+  </select>
+  <select id="getLastBrotherNo" resultType="String" parameterType="String">
+    select MAX(dept_no)
+    from department
+    where dept_no like "%"#{deptNo}"%"
+  </select>
+  <select id="getPlinenubs" resultType="String" parameterType="String">
+    select dept_name
+    from department
+  </select>
+</mapper>

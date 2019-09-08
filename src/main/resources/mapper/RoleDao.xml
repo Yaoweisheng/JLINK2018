@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.Jlink.dao.RoleDao">
-	<select id="queryRole" resultType="com.Jlink.entity.Role">
+<mapper namespace="com.jlink.dao.RoleDao">
+	<select id="queryRole" resultType="com.jlink.entity.Role">
 		SELECT role_id,role_name,
 		role_code
 		FROM role
 	</select>
 
-	<select id="queryRoleById" resultType="com.Jlink.entity.Role" parameterType="Integer">
+	<select id="queryRoleById" resultType="com.jlink.entity.Role" parameterType="Integer">
 		SELECT
 		role_id,role_name,
 		role_code

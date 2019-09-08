@@ -2,21 +2,21 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.Jlink.dao.UserDao">
-	<insert id="saveUser" useGeneratedKeys="true" keyProperty="userId" parameterType="com.Jlink.entity.User">
+<mapper namespace="com.jlink.dao.UserDao">
+	<insert id="saveUser" useGeneratedKeys="true" keyProperty="userId" parameterType="com.jlink.entity.User">
 		INSERT INTO
 		user(username, password, role_id, email, phone, create_time, name, address, status)
 		VALUES
 		(#{username},#{password},#{roleId}, #{email}, #{phone}, #{createTime}, #{name}, #{address}, #{status})
 	</insert>
-	<select id="getUserByUsername" resultType="com.Jlink.entity.User" parameterType="String">
+	<select id="getUserByUsername" resultType="com.jlink.entity.User" parameterType="String">
 		SELECT
 		user_id, username, password, role_id, email, phone, create_time, name, address, status
 		FROM user
 		where
 		username = #{username}
 	</select>
-	<select id="getUserById" resultType="com.Jlink.entity.User" parameterType="Long">
+	<select id="getUserById" resultType="com.jlink.entity.User" parameterType="Integer">
 		SELECT
 		user_id, username, password, role_id, email, phone, create_time, name, address, status
 		FROM user

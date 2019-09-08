@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.Jlink.dao.EnterpriseDao">
+<mapper namespace="com.jlink.dao.EnterpriseDao">
 	<insert id="saveEnterprise" useGeneratedKeys="true" keyProperty="enterpriseId">
 		INSERT INTO
 		enterprise(enterprise_name, enterprise_name_english, enterprise_type, enterprise_code, legel_person, start_time, licence_img, valid_time, create_time, address, user_id)
 		VALUES
 		(#{enterpriseName},#{enterpriseNameEnglish}, #{enterpriseType}, #{enterpriseCode}, #{legelPerson}, #{startTime}, #{licenceImg}, #{validTime}, #{createTime}, #{address}, #{userId})
 	</insert>
-	<select id="getEnterpriseById" resultType="com.Jlink.entity.Enterprise" parameterType="Integer">
+	<select id="getEnterpriseById" resultType="com.jlink.entity.Enterprise" parameterType="Integer">
 		SELECT
 		enterprise_id, enterprise_name, enterprise_name_english, enterprise_type, enterprise_code, legel_person, start_time, licence_img, valid_time, create_time, address, user_id
 		FROM enterprise
