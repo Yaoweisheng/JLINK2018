@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jlink.dao.UserinfoDao" >
+  <resultMap id="BaseResultMap" type="com.jlink.entity.Userinfo" >
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="BADGENUMBER" property="badgenumber" jdbcType="VARCHAR" />
+    <result column="SSN" property="ssn" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="GENDER" property="gender" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="PAGER" property="pager" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="HIREDDAY" property="hiredday" jdbcType="TIMESTAMP" />
+    <result column="STREET" property="street" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="ZIP" property="zip" jdbcType="VARCHAR" />
+    <result column="OPHONE" property="ophone" jdbcType="VARCHAR" />
+    <result column="FPHONE" property="fphone" jdbcType="VARCHAR" />
+    <result column="ATT" property="att" jdbcType="SMALLINT" />
+    <result column="INLATE" property="inlate" jdbcType="SMALLINT" />
+    <result column="OUTEARLY" property="outearly" jdbcType="SMALLINT" />
+    <result column="OVERTIME" property="overtime" jdbcType="SMALLINT" />
+    <result column="SEP" property="sep" jdbcType="SMALLINT" />
+    <result column="HOLIDAY" property="holiday" jdbcType="SMALLINT" />
+    <result column="MINZU" property="minzu" jdbcType="VARCHAR" />
+    <result column="CardNo" property="cardno" jdbcType="VARCHAR" />
+    <result column="DEPT_NO" property="deptNo" jdbcType="VARCHAR" />
+    <result column="LeaveDate" property="leavedate" jdbcType="TIMESTAMP" />
+    <result column="DEFAULTDEPTID" property="defaultdeptid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.jlink.entity.Userinfo" >
+    insert into userinfo (UserId, BADGENUMBER, SSN, 
+      NAME, GENDER, TITLE, 
+      PAGER, BIRTHDAY, HIREDDAY, 
+      STREET, CITY, STATE, 
+      ZIP, OPHONE, FPHONE, 
+      ATT, INLATE, OUTEARLY, 
+      OVERTIME, SEP, HOLIDAY, 
+      MINZU, CardNo, DEPT_NO, 
+      LeaveDate, DEFAULTDEPTID)
+    values (#{userid,jdbcType=INTEGER}, #{badgenumber,jdbcType=VARCHAR}, #{ssn,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{pager,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{hiredday,jdbcType=TIMESTAMP}, 
+      #{street,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{zip,jdbcType=VARCHAR}, #{ophone,jdbcType=VARCHAR}, #{fphone,jdbcType=VARCHAR}, 
+      #{att,jdbcType=SMALLINT}, #{inlate,jdbcType=SMALLINT}, #{outearly,jdbcType=SMALLINT}, 
+      #{overtime,jdbcType=SMALLINT}, #{sep,jdbcType=SMALLINT}, #{holiday,jdbcType=SMALLINT}, 
+      #{minzu,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, #{deptNo,jdbcType=VARCHAR}, 
+      #{leavedate,jdbcType=TIMESTAMP}, #{defaultdeptid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jlink.entity.Userinfo" >
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="badgenumber != null" >
+        BADGENUMBER,
+      </if>
+      <if test="ssn != null" >
+        SSN,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="gender != null" >
+        GENDER,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="pager != null" >
+        PAGER,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="hiredday != null" >
+        HIREDDAY,
+      </if>
+      <if test="street != null" >
+        STREET,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="zip != null" >
+        ZIP,
+      </if>
+      <if test="ophone != null" >
+        OPHONE,
+      </if>
+      <if test="fphone != null" >
+        FPHONE,
+      </if>
+      <if test="att != null" >
+        ATT,
+      </if>
+      <if test="inlate != null" >
+        INLATE,
+      </if>
+      <if test="outearly != null" >
+        OUTEARLY,
+      </if>
+      <if test="overtime != null" >
+        OVERTIME,
+      </if>
+      <if test="sep != null" >
+        SEP,
+      </if>
+      <if test="holiday != null" >
+        HOLIDAY,
+      </if>
+      <if test="minzu != null" >
+        MINZU,
+      </if>
+      <if test="cardno != null" >
+        CardNo,
+      </if>
+      <if test="deptNo != null" >
+        DEPT_NO,
+      </if>
+      <if test="leavedate != null" >
+        LeaveDate,
+      </if>
+      <if test="defaultdeptid != null" >
+        DEFAULTDEPTID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="badgenumber != null" >
+        #{badgenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ssn != null" >
+        #{ssn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pager != null" >
+        #{pager,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiredday != null" >
+        #{hiredday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="ophone != null" >
+        #{ophone,jdbcType=VARCHAR},
+      </if>
+      <if test="fphone != null" >
+        #{fphone,jdbcType=VARCHAR},
+      </if>
+      <if test="att != null" >
+        #{att,jdbcType=SMALLINT},
+      </if>
+      <if test="inlate != null" >
+        #{inlate,jdbcType=SMALLINT},
+      </if>
+      <if test="outearly != null" >
+        #{outearly,jdbcType=SMALLINT},
+      </if>
+      <if test="overtime != null" >
+        #{overtime,jdbcType=SMALLINT},
+      </if>
+      <if test="sep != null" >
+        #{sep,jdbcType=SMALLINT},
+      </if>
+      <if test="holiday != null" >
+        #{holiday,jdbcType=SMALLINT},
+      </if>
+      <if test="minzu != null" >
+        #{minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null" >
+        #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="leavedate != null" >
+        #{leavedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="defaultdeptid != null" >
+        #{defaultdeptid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

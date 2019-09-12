@@ -1,6 +1,7 @@
 package com.jlink.service;
 
 import com.jlink.entity.Department;
+import com.jlink.vo.Node;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface DepartmentService {
     String getNewNo(String ParentNo);
 
     List<String> getPlinenubs();
+
+    List<Node> getDepartmentTree();
 }

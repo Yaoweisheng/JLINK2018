@@ -14,14 +14,13 @@ public class User {
     public User(){}
 
     private Integer userId;
-    private String username;
-    private String password;
-    private String phone;
     private String name;
+    private String password;
     private String email;
-    private String address;
-    private Integer status;
-    private Integer roleId;
+    private String phone;
     private Date createTime;
+    private Date modifyTime;
+    private Integer isDelete;
+    private Integer isActive;
 
 }

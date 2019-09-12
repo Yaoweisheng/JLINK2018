@@ -4,24 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jlink.dao.RoleDao">
 	<select id="queryRole" resultType="com.jlink.entity.Role">
-		SELECT role_id,role_name,
-		role_code
+		SELECT role_id, name, code, create_time, modify_time, is_delete, is_active
 		FROM role
+		where is_delete = 0
 	</select>
 
 	<select id="queryRoleById" resultType="com.jlink.entity.Role" parameterType="Integer">
-		SELECT
-		role_id,role_name,
-		role_code
+		SELECT role_id, name, code, create_time, modify_time, is_delete, is_active
 		FROM role
 		where
 		role_id = #{roleId}
 	</select>
 
-	<insert id="saveRole" useGeneratedKeys="true" keyColumn="role_id" keyProperty="roleId">
+	<select id="queryRoleByName" resultType="com.jlink.entity.Role" parameterType="String">
+		SELECT role_id, name, code, create_time, modify_time, is_delete, is_active
+		FROM role
+		where
+		name = #{name}
+	</select>
+
+    <insert id="saveRole" useGeneratedKeys="true" keyProperty="roleId" parameterType="com.jlink.entity.Role">
 		INSERT INTO
-		role(role_name, role_code)
+		role(name, code, create_time, is_delete, is_active)
 		VALUES
-		(#{roleName},#{roleCode})
+		(#{name},#{code},#{createTime}, #{isDelete}, #{isActive})
 	</insert>
+
+    <update id="updateRole" keyProperty="roleId" >
+        update role
+        set name = #{name},
+            code = #{code},
+            modify_time = #{modifyTime},
+            is_delete = #{isDelete},
+            is_active = #{isActive}
+        where role_id = #{roleId}
+    </update>
 </mapper>

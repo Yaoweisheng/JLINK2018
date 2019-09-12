@@ -13,5 +13,9 @@ public interface RoleService {
 
     Role getRoleById(Integer roleId);
 
+    Role getRoleByName(String name);
+
     boolean saveRole(Role role);
+
+    boolean updateRole(Role role);
 }

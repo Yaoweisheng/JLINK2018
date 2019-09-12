@@ -5,34 +5,34 @@
 <mapper namespace="com.jlink.dao.UserDao">
 	<insert id="saveUser" useGeneratedKeys="true" keyProperty="userId" parameterType="com.jlink.entity.User">
 		INSERT INTO
-		user(username, password, role_id, email, phone, create_time, name, address, status)
+		user(name, password, email, phone, create_time, modify_time, is_delete, is_active)
 		VALUES
-		(#{username},#{password},#{roleId}, #{email}, #{phone}, #{createTime}, #{name}, #{address}, #{status})
+		(#{name},#{password},#{email}, #{phone}, #{createTime}, #{modifyTime}, #{isDelete}, #{isActive})
 	</insert>
 	<select id="getUserByUsername" resultType="com.jlink.entity.User" parameterType="String">
 		SELECT
-		user_id, username, password, role_id, email, phone, create_time, name, address, status
+		user_id, name, password, email, phone, create_time, modify_time, is_delete, is_active
 		FROM user
 		where
-		username = #{username}
+		name = #{name}
 	</select>
 	<select id="getUserById" resultType="com.jlink.entity.User" parameterType="Integer">
 		SELECT
-		user_id, username, password, role_id, email, phone, create_time, name, address, status
+		user_id, name, password, email, phone, create_time, modify_time, is_delete, is_active
 		FROM user
 		where
 		user_id = #{userId}
 	</select>
 	<update id="updateUser" keyProperty="userId">
 		update user
-		set password = #{password},
-			role_id = #{roleId},
+		set name = #{name},
+			password = #{password},
 			email = #{email},
 			phone = #{phone},
 			create_time = #{createTime},
-			name = #{name},
-			address = #{address},
-			status = #{status}
-		where username = #{username}
+			modify_time = #{modifyTime},
+			is_delete = #{isDelete},
+			is_active = #{isActive}
+		where user_id = #{userId}
 	</update>
 </mapper>

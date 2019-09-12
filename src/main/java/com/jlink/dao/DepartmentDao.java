@@ -20,4 +20,8 @@ public interface DepartmentDao {
     String getLastBrotherNo(String parentNo);
 
     List<String> getPlinenubs();
+
+    List<Department> getRoots();
+
+    List<Department> getChildren(String deptNo);
 }

@@ -18,73 +18,18 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
- * @author binzhang
- * @date 2019-05-06
+ * @author yaoweisheng
+ * @date 2019-09-10
  */
 @Controller
 @RequestMapping("user")
 public class UserController {
 
     @Autowired
-    private RoleService roleService;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
     private TokenService tokenService;
-
-    /**
-     * 获取用户类型
-     * @return
-     */
-    @RequestMapping(value = "getRoleList", method = RequestMethod.GET)
-    @ResponseBody
-    public ObjectResult getRoleList(){
-        List<Role> roleListData = roleService.getRoleList();
-        List<Role> roleList = new LinkedList<>();
-        for (Role r :
-                roleListData) {
-            if (r.getRoleName().equals("企业用户") || r.getRoleName().equals("咨询机构")){
-                roleList.add(r);
-            }
-        }
-        return ObjectResult.success(roleList);
-    }
-    
-    /**
-     * 获取更多用户类型
-     * @return
-     */
-    @RequestMapping(value = "getMoreRolelist", method = RequestMethod.GET)
-    @ResponseBody
-    public ObjectResult getMoreRolelist(){
-        List<Role> roleListData = roleService.getRoleList();
-        List<Role> roleList = new LinkedList<>();
-        for (Role r :
-                roleListData) {
-            if (!r.getRoleName().equals("系统管理员")){
-                roleList.add(r);
-            }
-        }
-        return ObjectResult.success(roleList);
-    }
-
-    /**
-     * 根据id获取角色
-     * @param roleId
-     * @return
-     */
-    @RequestMapping(value = "getrolebyid", method = RequestMethod.GET)
-    @ResponseBody
-    public ObjectResult getRoleById(@RequestParam Integer roleId){
-        try{
-            Role role = roleService.getRoleById(roleId);
-            return ObjectResult.success(role);
-        }catch (Exception e){
-            return ObjectResult.error(e.getMessage());
-        }
-    }
 
     /**
      * 测试发送短信
@@ -118,29 +63,6 @@ public class UserController {
         }
     }
 
-    /**
-     * 添加角色
-     * @param role
-     * @return
-     */
-    @RequestMapping(value = "saverole", method = RequestMethod.POST)
-    @ResponseBody
-    public ObjectResult saveRole(@RequestBody Role role){
-        try{
-            if(StringUtils.isBlank(role.getRoleCode()) || StringUtils.isBlank(role.getRoleName())){
-                return ObjectResult.error("必填项未填！");
-            }
-            boolean result = roleService.saveRole(role);
-            if (result){
-                return ObjectResult.success(role);
-            }
-            return ObjectResult.error("添加失败");
-
-        }catch (Exception e){
-            return ObjectResult.error(e.getMessage());
-        }
-    }
-
     @RequestMapping(value="getuserlist", method= RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getUserList(HttpServletRequest request){
@@ -157,7 +79,6 @@ public class UserController {
         return modelMap;
     }
 
-
     /**
      * 用户注册
      * @param user
@@ -167,18 +88,19 @@ public class UserController {
     @ResponseBody
     public ObjectResult register(@RequestBody User user){
         try{
-            if(StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword()) || StringUtils.isBlank(user.getEmail()) || user.getRoleId() == null){
+            if(StringUtils.isBlank(user.getName()) || StringUtils.isBlank(user.getPassword())){
                 return ObjectResult.error("必填项未填！");
             }
-            User userExist = userService.getUserByUsername(user.getUsername());
+            User userExist = userService.getUserByUsername(user.getName());
             if (userExist != null){
                 return ObjectResult.error("用户已存在！");
             }
 //            user.setPassword(DESUtils.getEncryptString(user.getPassword()));
 //            System.out.println("Date:"+new Date());
             user.setCreateTime(new Date());
-            user.setPhone(user.getUsername());
-            user.setStatus(0);
+            user.setPhone(user.getPhone());
+            user.setIsDelete(0);
+            user.setIsActive(0);
             boolean result = userService.saveUser(user);
             if (result){
                 User userData = userService.getUserById(user.getUserId());
@@ -200,10 +122,10 @@ public class UserController {
     @ResponseBody
     public ObjectResult login(@RequestBody User user){
         try{
-            if(StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())){
+            if(StringUtils.isBlank(user.getName()) || StringUtils.isBlank(user.getPassword())){
                 return ObjectResult.error("必填项未填！");
             }
-            User userData = userService.getUserByUsername(user.getUsername());
+            User userData = userService.getUserByUsername(user.getName());
             if (userData == null){
                 return ObjectResult.error("用户不存在！");
             }
@@ -261,23 +183,21 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping(value = "personalInformationModification", method = RequestMethod.POST)
+    @RequestMapping(value = "updateUser", method = RequestMethod.PUT)
     @ResponseBody
     public ObjectResult personalInformationModification(@RequestBody User user){
         try{
-            if(StringUtils.isBlank(user.getUsername())){
-                return ObjectResult.error("未指定用户");
-            }
-            if(StringUtils.isBlank(user.getName()) || StringUtils.isBlank(user.getAddress()) || StringUtils.isBlank(user.getEmail())){
+            if(StringUtils.isBlank(user.getName()) || StringUtils.isBlank(user.getPassword())){
                 return ObjectResult.error("必填项未填！");
             }
-            User userData = userService.getUserByUsername(user.getUsername());
-            userData.setName(user.getName());
-            userData.setAddress(user.getAddress());
-            userData.setEmail(user.getEmail());
-            boolean result = userService.updateUser(userData);
+            User userExist = userService.getUserByUsername(user.getName());
+            if(userExist != null){
+                return ObjectResult.error("用户名已存在！");
+            }
+            user.setModifyTime(new Date());
+            boolean result = userService.updateUser(user);
             if (result){
-                return ObjectResult.success(userData);
+                return ObjectResult.success(user);
             }
             return ObjectResult.error("添加失败");
 

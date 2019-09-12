@@ -5,7 +5,7 @@ import com.jlink.entity.User;
 public interface UserDao {
     int saveUser(User user);
 
-    User getUserByUsername(String username);
+    User getUserByUsername(String name);
 
     User getUserById(Integer userId);
 

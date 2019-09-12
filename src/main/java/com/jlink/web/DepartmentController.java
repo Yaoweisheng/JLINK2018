@@ -3,14 +3,15 @@ package com.jlink.web;
 import com.auth0.jwt.JWT;
 import com.jlink.dto.ObjectResult;
 import com.jlink.entity.Department;
-import com.jlink.entity.User;
 import com.jlink.service.DepartmentService;
 import com.jlink.service.UserService;
+import com.jlink.vo.Node;
 import com.jlink.vo.DepartmentObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sun.reflect.annotation.ExceptionProxy;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -31,8 +32,13 @@ public class DepartmentController {
     @RequestMapping(value = "getDepartmentList", method = RequestMethod.GET)
     @ResponseBody
     public ObjectResult getDepartmentList(){
-        List<Department> departmentList = departmentService.getDepartmentList();
-        return ObjectResult.success(departmentList);
+        try{
+            List<Department> departmentList = departmentService.getDepartmentList();
+            return ObjectResult.success(departmentList);
+        }
+        catch(Exception e){
+            return ObjectResult.error(e.getMessage());
+        }
     }
 
 
@@ -77,6 +83,9 @@ public class DepartmentController {
     @ResponseBody
     public ObjectResult updateDepartment(@RequestBody Department department, HttpServletRequest httpServletRequest) {
         try {
+            if(StringUtils.isBlank(department.getDeptName())){
+                return ObjectResult.error("必填项未填！");
+            }
             Department departmentData = departmentService.getDepartmentById(department.getDeptId());
             departmentData.setDeptName(department.getDeptName());
             departmentData.setModifyDate(new Date());
@@ -95,14 +104,30 @@ public class DepartmentController {
     }
 
     /**
-     * 获取所有部门
+     * 获取所有产线
      * @return
      */
     @RequestMapping(value = "getPlinenubs", method = RequestMethod.GET)
     @ResponseBody
     public ObjectResult getPlinenubs(){
-        List<String> plinenubs = departmentService.getPlinenubs();
-        return ObjectResult.success(plinenubs);
+        try{
+            List<String> plinenubs = departmentService.getPlinenubs();
+            return ObjectResult.success(plinenubs);
+        }
+        catch(Exception e){
+            return ObjectResult.error(e.getMessage());
+        }
     }
 
+
+    /**
+     * 获取部门树
+     * @return
+     */
+    @RequestMapping(value = "getTree", method = RequestMethod.GET)
+    @ResponseBody
+    public ObjectResult getTree(){
+        List<Node> departmentNodes = departmentService.getDepartmentTree();
+        return ObjectResult.success(departmentNodes);
+    }
 }

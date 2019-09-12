@@ -3,10 +3,12 @@ package com.jlink.service.impl;
 import com.jlink.dao.DepartmentDao;
 import com.jlink.entity.Department;
 import com.jlink.service.DepartmentService;
+import com.jlink.vo.Node;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -65,5 +67,34 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<String> getPlinenubs() {
         return departmentDao.getPlinenubs();
+    }
+
+    @Override
+    public List<Node> getDepartmentTree() {
+        List<Node> departmentNodes = new LinkedList<>();
+        List<Department> departments = departmentDao.getRoots();
+        for (Department d :
+                departments) {
+            Node departmentNode = new Node();
+            departmentNode.setId(d.getDeptNo());
+            departmentNode.setText(d.getDeptName());
+            departmentNode.setChildren(getChildren(d.getDeptNo()));
+            departmentNodes.add(departmentNode);
+        }
+        return departmentNodes;
+    }
+
+    private List<Node> getChildren(String no){
+        List<Node> departmentNodes = new LinkedList<>();
+        List<Department> departments = departmentDao.getChildren(no);
+        for (Department d :
+                departments) {
+            Node departmentNode = new Node();
+            departmentNode.setId(d.getDeptNo());
+            departmentNode.setText(d.getDeptName());
+            departmentNode.setChildren(getChildren(d.getDeptNo()));
+            departmentNodes.add(departmentNode);
+        }
+        return departmentNodes;
     }
 }

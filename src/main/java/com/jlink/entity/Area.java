@@ -1,21 +1,33 @@
 package com.jlink.entity;
 
-import lombok.Data;
-
-import java.util.Date;
-
-@Data
 public class Area {
+    private String code;
 
-	//ID
-	private Integer areaId;
-	//名称
-	private String areaName;
-	//权重
-	private Integer priority;
-	//创建时间
-	private Date createTime;
-	//更新时间
-	private Date lastEditTime;
-	
+    private String name;
+
+    private String fathercode;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getFathercode() {
+        return fathercode;
+    }
+
+    public void setFathercode(String fathercode) {
+        this.fathercode = fathercode == null ? null : fathercode.trim();
+    }
 }
