@@ -2,13 +2,12 @@ package com.jlink.web;
 
 import com.jlink.dto.ObjectResult;
 import com.jlink.service.MenuService;
-import com.jlink.vo.Node;
+import com.jlink.dto.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

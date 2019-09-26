@@ -1,12 +1,10 @@
 package com.jlink.web;
 
 import com.jlink.util.SmsUtil;
-import com.jlink.vo.LoginObject;
-import com.jlink.vo.UserChangePasswordObject;
+import com.jlink.dto.LoginObject;
+import com.jlink.dto.UserChangePasswordObject;
 import com.jlink.dto.ObjectResult;
-import com.jlink.entity.Role;
 import com.jlink.entity.User;
-import com.jlink.service.RoleService;
 import com.jlink.service.TokenService;
 import com.jlink.service.UserService;
 import org.apache.commons.lang.StringUtils;

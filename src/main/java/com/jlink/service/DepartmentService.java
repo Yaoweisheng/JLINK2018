@@ -1,7 +1,7 @@
 package com.jlink.service;
 
 import com.jlink.entity.Department;
-import com.jlink.vo.Node;
+import com.jlink.dto.Node;
 
 import java.util.List;
 

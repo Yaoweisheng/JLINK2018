@@ -5,13 +5,12 @@ import com.jlink.dto.ObjectResult;
 import com.jlink.entity.Department;
 import com.jlink.service.DepartmentService;
 import com.jlink.service.UserService;
-import com.jlink.vo.Node;
-import com.jlink.vo.DepartmentObject;
+import com.jlink.dto.Node;
+import com.jlink.dto.DepartmentObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import sun.reflect.annotation.ExceptionProxy;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;

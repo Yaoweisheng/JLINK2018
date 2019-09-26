@@ -2,8 +2,10 @@ package com.jlink.dao;
 
 import com.jlink.entity.Area;
 
-public interface AreaDao {
-    int insert(Area record);
+import java.util.List;
 
-    int insertSelective(Area record);
+public interface AreaDao {
+    List<Area> getProvinces();
+    List<Area> getCitys(String provinceCode);
+    List<Area> getAreas(String cityCode);
 }

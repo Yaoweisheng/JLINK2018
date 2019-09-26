@@ -811,10 +811,8 @@ roleId=4
     "msg": "请重新登录"
 }
 ```
-
-
 ##6<span id="roleDept">角色部门</span>
-###5.1<span id="roleDept-addRoleDept">角色绑定部门</span>
+###6.1<span id="roleDept-addRoleDept">角色绑定部门</span>
 - **请求URL**
 >[localhost:8080/jlink/roleDept/addRoleDept](#)
 - **请求方式**
@@ -889,6 +887,369 @@ roleId = 1
 ```
 - **说明**
 
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+##6<span id="area">地区</span>
+###6.1<span id="area-getProvinces">获得省</span>
+- **请求URL**
+>[localhost:8080/jlink/area/getProvinces](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": [
+        {
+            "code": "110",
+            "name": "北京市",
+            "fatherCode": null
+        },
+        ...
+    ]
+}
+```
+- **说明**
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###6.2<span id="area-getCitys">获得市</span>
+- **请求URL**
+>[localhost:8080/jlink/area/getCitys](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+provinceCode=110
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": [
+        {
+            "code": "110100",
+            "name": "市辖区",
+            "fatherCode": "110"
+        },
+        ...
+    ]
+}
+```
+- **说明**
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+###6.3<span id="area-getAreas">获得区</span>
+- **请求URL**
+>[localhost:8080/jlink/area/getAreas](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+cityCode=110100
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": [
+        {
+            "code": "110101",
+            "name": "东城区",
+            "fatherCode": "110100"
+        },
+        ...
+    ]
+}
+```
+- **说明**
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+##7<span id="userinfo">员工</span>
+###7.1<span id="userinfo-addUserinfo">添加</span>
+- **请求URL**
+>[localhost:8080/jlink/userinfo/addUserinfo](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"badgenumber":"00123456",//工号
+	"ssn":"140311199605043313",//身份证号
+	"name":"Eson",//
+	"gender":"男",//性别男、女
+	"title":"",
+	"pager":"",
+	"att":0,
+	"inlate":0,
+	"outearly":0,
+	"overtime":0,
+	"sep":0,
+	"holiday":0,
+	"cardno":"123456789",
+	"deptNo":"0101"//部门号
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "userid": null,
+        "badgenumber": "001234567",
+        "ssn": "140311199605043313",
+        "name": "Eson",
+        "gender": "男",
+        "title": "",
+        "pager": "",
+        "birthday": null,
+        "hiredday": null,
+        "street": null,
+        "city": null,
+        "state": null,
+        "zip": null,
+        "ophone": null,
+        "fphone": null,
+        "att": 0,
+        "inlate": 0,
+        "outearly": 0,
+        "overtime": 0,
+        "sep": 0,
+        "holiday": 0,
+        "minzu": null,
+        "cardno": "123456789",
+        "deptNo": "0101",
+        "leavedate": null,
+        "defaultdeptid": 101
+    }
+}
+```
+- **说明**
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###7.2<span id="userinfo-query">条件查询</span>
+- **请求URL**
+>[localhost:8080/jlink/userinfo/query](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+badgenumber=//工号
+&name=//姓名
+&phone=//手机号
+&deptNo=//部门号
+&page=1//页号
+&per=10//显示条数
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "list": [
+            {
+                "userid": 3,
+                "badgenumber": "00000003",
+                "ssn": "332627197501030623",
+                "name": "陈海琴",
+                "gender": "女",
+                "title": null,
+                "pager": null,
+                "birthday": null,
+                "hiredday": 763747200000,
+                "street": null,
+                "city": null,
+                "state": null,
+                "zip": null,
+                "ophone": null,
+                "fphone": null,
+                "att": 0,
+                "inlate": 0,
+                "outearly": 0,
+                "overtime": 0,
+                "sep": 0,
+                "holiday": 0,
+                "minzu": null,
+                "cardno": "3066030750",
+                "deptNo": "011002",
+                "leavedate": null,
+                "defaultdeptid": 11002
+            },
+            ...
+            
+        ],
+        "count": 2506//总条数
+    }
+}
+```
+- **说明**
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+###7.3<span id="userinfo-delete">删除</span>
+- **请求URL**
+>[localhost:8080/jlink/userinfo/delete](#)
+- **请求方式**
+>**DELETE**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+userId=2
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
+}
+```
+- **说明**
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+###7.4<span id="userinfo-batchSave">导入EXCEL</span>
+- **请求URL**
+>[localhost:8080/jlink/userinfo/batchSave](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+form-data:
+{
+    file:file.xlsx/.xls
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
+}
+```
+- **说明**
+> excel表存储到files文件中，批量存储
+
+> 未登录:
 ```
 {
     "code": "403",

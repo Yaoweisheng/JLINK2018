@@ -17,9 +17,20 @@ public class FileUtil {
 		basePath = basePath.replace("/", seperator);
 		return basePath;
 	}
+	public static String getFileBasePath() {
+		String basePath = "";
+		basePath = "D:/apache-tomcat-9.0.20/webapps/files";
+		basePath = basePath.replace("/", seperator);
+		return basePath;
+	}
 
 	public static String getImgRelativePath() {
 		String relativePath = "images/";
+		return relativePath;
+	}
+
+	public static String getFileRelativePath() {
+		String relativePath = "files/";
 		return relativePath;
 	}
 //	public static String getImgBasePath() {

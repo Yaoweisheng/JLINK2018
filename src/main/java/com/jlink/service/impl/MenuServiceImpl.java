@@ -3,7 +3,7 @@ package com.jlink.service.impl;
 import com.jlink.dao.MenuDao;
 import com.jlink.entity.Menu;
 import com.jlink.service.MenuService;
-import com.jlink.vo.Node;
+import com.jlink.dto.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -64,7 +64,7 @@
 	<select id="getChildren" resultType="com.jlink.entity.Department" parameterType="String">
     select dept_no, dept_name
     from department
-    where dept_no like "%"#{deptNo}"" and dept_no != #{deptNo}
+    where dept_no like #{deptNo}"%" and dept_no != #{deptNo}
     order by dept_no
   </select>
 </mapper>

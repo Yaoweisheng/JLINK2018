@@ -1,6 +1,6 @@
 package com.jlink.service;
 
-import com.jlink.vo.Node;
+import com.jlink.dto.Node;
 
 import java.util.List;
 

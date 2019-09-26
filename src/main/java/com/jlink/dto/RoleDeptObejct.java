@@ -1,4 +1,4 @@
-package com.jlink.vo;
+package com.jlink.dto;
 
 import lombok.Data;
 

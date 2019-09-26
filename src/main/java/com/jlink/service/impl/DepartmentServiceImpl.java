@@ -3,7 +3,7 @@ package com.jlink.service.impl;
 import com.jlink.dao.DepartmentDao;
 import com.jlink.entity.Department;
 import com.jlink.service.DepartmentService;
-import com.jlink.vo.Node;
+import com.jlink.dto.Node;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

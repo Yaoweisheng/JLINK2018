@@ -1,9 +1,8 @@
 package com.jlink.web;
 
-import com.beust.jcommander.Parameter;
 import com.jlink.dto.ObjectResult;
 import com.jlink.service.RoleMenuService;
-import com.jlink.vo.RoleMenuObejct;
+import com.jlink.dto.RoleMenuObejct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

@@ -27,10 +27,10 @@ import javax.servlet.ServletException;
 public class MvcConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware{
 
 	//解决跨域问题
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**");
-	}
+//	@Override
+//	public void addCorsMappings(CorsRegistry registry) {
+//		registry.addMapping("/**");
+//	}
 	// Spring容器
 	private ApplicationContext applicationContext;
 	

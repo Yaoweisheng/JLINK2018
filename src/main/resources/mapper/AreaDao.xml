@@ -4,37 +4,21 @@
   <resultMap id="BaseResultMap" type="com.jlink.entity.Area" >
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="fatherCode" property="fathercode" jdbcType="VARCHAR" />
+    <result column="father_code" property="fatherCode" jdbcType="VARCHAR" />
   </resultMap>
-  <insert id="insert" parameterType="com.jlink.entity.Area" >
-    insert into area (code, name, fatherCode
-      )
-    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{fathercode,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.jlink.entity.Area" >
-    insert into area
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="code != null" >
-        code,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="fathercode != null" >
-        fatherCode,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="code != null" >
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="fathercode != null" >
-        #{fathercode,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+  <select id="getProvinces" resultType="com.jlink.entity.Area" >
+    select code, name, father_code
+    from area
+    where father_code is null
+  </select>
+  <select id="getCitys" resultType="com.jlink.entity.Area" parameterType="String">
+    select code, name, father_code
+    from area
+    where father_code = #{provinceCode}
+  </select>
+  <select id="getAreas" resultType="com.jlink.entity.Area" parameterType="String">
+    select code, name, father_code
+    from area
+    where father_code = #{cityCode}
+  </select>
 </mapper>

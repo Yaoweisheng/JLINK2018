@@ -29,8 +29,8 @@
     <result column="LeaveDate" property="leavedate" jdbcType="TIMESTAMP" />
     <result column="DEFAULTDEPTID" property="defaultdeptid" jdbcType="INTEGER" />
   </resultMap>
-  <insert id="insert" parameterType="com.jlink.entity.Userinfo" >
-    insert into userinfo (UserId, BADGENUMBER, SSN, 
+  <insert id="save" useGeneratedKeys="true" keyProperty="userid" parameterType="com.jlink.entity.Userinfo" >
+    insert into userinfo (BADGENUMBER, SSN,
       NAME, GENDER, TITLE, 
       PAGER, BIRTHDAY, HIREDDAY, 
       STREET, CITY, STATE, 
@@ -39,7 +39,7 @@
       OVERTIME, SEP, HOLIDAY, 
       MINZU, CardNo, DEPT_NO, 
       LeaveDate, DEFAULTDEPTID)
-    values (#{userid,jdbcType=INTEGER}, #{badgenumber,jdbcType=VARCHAR}, #{ssn,jdbcType=VARCHAR}, 
+    values (#{badgenumber,jdbcType=VARCHAR}, #{ssn,jdbcType=VARCHAR},
       #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{pager,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{hiredday,jdbcType=TIMESTAMP}, 
       #{street,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
@@ -49,167 +49,86 @@
       #{minzu,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, #{deptNo,jdbcType=VARCHAR}, 
       #{leavedate,jdbcType=TIMESTAMP}, #{defaultdeptid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.jlink.entity.Userinfo" >
-    insert into userinfo
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        UserId,
-      </if>
-      <if test="badgenumber != null" >
-        BADGENUMBER,
-      </if>
-      <if test="ssn != null" >
-        SSN,
-      </if>
-      <if test="name != null" >
-        NAME,
-      </if>
-      <if test="gender != null" >
-        GENDER,
-      </if>
-      <if test="title != null" >
-        TITLE,
-      </if>
-      <if test="pager != null" >
-        PAGER,
-      </if>
-      <if test="birthday != null" >
-        BIRTHDAY,
-      </if>
-      <if test="hiredday != null" >
-        HIREDDAY,
-      </if>
-      <if test="street != null" >
-        STREET,
-      </if>
-      <if test="city != null" >
-        CITY,
-      </if>
-      <if test="state != null" >
-        STATE,
-      </if>
-      <if test="zip != null" >
-        ZIP,
-      </if>
-      <if test="ophone != null" >
-        OPHONE,
-      </if>
-      <if test="fphone != null" >
-        FPHONE,
-      </if>
-      <if test="att != null" >
-        ATT,
-      </if>
-      <if test="inlate != null" >
-        INLATE,
-      </if>
-      <if test="outearly != null" >
-        OUTEARLY,
-      </if>
-      <if test="overtime != null" >
-        OVERTIME,
-      </if>
-      <if test="sep != null" >
-        SEP,
-      </if>
-      <if test="holiday != null" >
-        HOLIDAY,
-      </if>
-      <if test="minzu != null" >
-        MINZU,
-      </if>
-      <if test="cardno != null" >
-        CardNo,
-      </if>
-      <if test="deptNo != null" >
-        DEPT_NO,
-      </if>
-      <if test="leavedate != null" >
-        LeaveDate,
-      </if>
-      <if test="defaultdeptid != null" >
-        DEFAULTDEPTID,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="badgenumber != null" >
-        #{badgenumber,jdbcType=VARCHAR},
-      </if>
-      <if test="ssn != null" >
-        #{ssn,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null" >
-        #{gender,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="pager != null" >
-        #{pager,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null" >
-        #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="hiredday != null" >
-        #{hiredday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="street != null" >
-        #{street,jdbcType=VARCHAR},
-      </if>
-      <if test="city != null" >
-        #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="zip != null" >
-        #{zip,jdbcType=VARCHAR},
-      </if>
-      <if test="ophone != null" >
-        #{ophone,jdbcType=VARCHAR},
-      </if>
-      <if test="fphone != null" >
-        #{fphone,jdbcType=VARCHAR},
-      </if>
-      <if test="att != null" >
-        #{att,jdbcType=SMALLINT},
-      </if>
-      <if test="inlate != null" >
-        #{inlate,jdbcType=SMALLINT},
-      </if>
-      <if test="outearly != null" >
-        #{outearly,jdbcType=SMALLINT},
-      </if>
-      <if test="overtime != null" >
-        #{overtime,jdbcType=SMALLINT},
-      </if>
-      <if test="sep != null" >
-        #{sep,jdbcType=SMALLINT},
-      </if>
-      <if test="holiday != null" >
-        #{holiday,jdbcType=SMALLINT},
-      </if>
-      <if test="minzu != null" >
-        #{minzu,jdbcType=VARCHAR},
-      </if>
-      <if test="cardno != null" >
-        #{cardno,jdbcType=VARCHAR},
-      </if>
-      <if test="deptNo != null" >
-        #{deptNo,jdbcType=VARCHAR},
-      </if>
-      <if test="leavedate != null" >
-        #{leavedate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="defaultdeptid != null" >
-        #{defaultdeptid,jdbcType=INTEGER},
-      </if>
-    </trim>
+  <select id="getUserinfoByUserId" resultType="com.jlink.entity.Userinfo" parameterType="Integer">
+    select BADGENUMBER, SSN,
+      NAME, GENDER, TITLE,
+      PAGER, BIRTHDAY, HIREDDAY,
+      STREET, CITY, STATE,
+      ZIP, OPHONE, FPHONE,
+      ATT, INLATE, OUTEARLY,
+      OVERTIME, SEP, HOLIDAY,
+      MINZU, CardNo, DEPT_NO,
+      LeaveDate, DEFAULTDEPTID
+    from userinfo
+    where UserId = #{userid}
+  </select>
+  <select id="query" resultType="com.jlink.entity.Userinfo">
+    select UserId, BADGENUMBER, SSN,
+    NAME, GENDER, TITLE,
+    PAGER, BIRTHDAY, HIREDDAY,
+    STREET, CITY, STATE,
+    ZIP, OPHONE, FPHONE,
+    ATT, INLATE, OUTEARLY,
+    OVERTIME, SEP, HOLIDAY,
+    MINZU, CardNo, DEPT_NO,
+    LeaveDate, DEFAULTDEPTID
+    from userinfo
+    where 1=1
+    <if test="badgenumber != null and badgenumber != ''">
+      and BADGENUMBER like "%"#{badgenumber}"%"
+    </if>
+    <if test="name != null and name != ''">
+      and name like "%"#{name}"%"
+    </if>
+    <if test="phone != null and phone != ''">
+      and PAGER like "%"#{phone}"%"
+    </if>
+    <if test="deptNo != null and deptNo != ''">
+      and DEPT_NO like #{deptNo}"%"
+    </if>
+    order by UserId limit #{offset}, #{limit}
+  </select>
+  <select id="getCount" resultType="Integer">
+    select count(*)
+    from userinfo
+    where 1=1
+    <if test="badgenumber != null and badgenumber != ''">
+      and BADGENUMBER like "%"#{badgenumber}"%"
+    </if>
+    <if test="name != null and name != ''">
+      and name like "%"#{name}"%"
+    </if>
+    <if test="phone != null and phone != ''">
+      and PAGER like "%"#{phone}"%"
+    </if>
+    <if test="deptNo != null and deptNo != ''">
+      and DEPT_NO like #{deptNo}"%"
+    </if>
+  </select>
+  <delete id="delete" parameterType="Integer">
+    delete from userinfo where UserId = #{userId}
+  </delete>
+  <insert id="batchSave" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
+    insert ignore into userinfo (BADGENUMBER, SSN,
+    NAME, GENDER, TITLE,
+    PAGER, BIRTHDAY, HIREDDAY,
+    STREET, CITY, STATE,
+    ZIP, OPHONE, FPHONE,
+    ATT, INLATE, OUTEARLY,
+    OVERTIME, SEP, HOLIDAY,
+    MINZU, CardNo, DEPT_NO,
+    LeaveDate, DEFAULTDEPTID)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.badgenumber,jdbcType=VARCHAR}, #{item.ssn,jdbcType=VARCHAR},
+      #{item.name,jdbcType=VARCHAR}, #{item.gender,jdbcType=VARCHAR}, #{item.title,jdbcType=VARCHAR},
+      #{item.pager,jdbcType=VARCHAR}, #{item.birthday,jdbcType=TIMESTAMP}, #{item.hiredday,jdbcType=TIMESTAMP},
+      #{item.street,jdbcType=VARCHAR}, #{item.city,jdbcType=VARCHAR}, #{item.state,jdbcType=VARCHAR},
+      #{item.zip,jdbcType=VARCHAR}, #{item.ophone,jdbcType=VARCHAR}, #{item.fphone,jdbcType=VARCHAR},
+      #{item.att,jdbcType=SMALLINT}, #{item.inlate,jdbcType=SMALLINT}, #{item.outearly,jdbcType=SMALLINT},
+      #{item.overtime,jdbcType=SMALLINT}, #{item.sep,jdbcType=SMALLINT}, #{item.holiday,jdbcType=SMALLINT},
+      #{item.minzu,jdbcType=VARCHAR}, #{item.cardno,jdbcType=VARCHAR}, #{item.deptNo,jdbcType=VARCHAR},
+      #{item.leavedate,jdbcType=TIMESTAMP}, #{item.defaultdeptid,jdbcType=INTEGER})
+    </foreach>
   </insert>
 </mapper>
