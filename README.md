@@ -1257,3 +1257,131 @@ form-data:
     "msg": "请重新登录"
 }
 ```
+##8<span id="holiday">假期管理</span>
+###8.1<span id="holiday-batchSave">批量存储</span>
+- **请求URL**
+>[localhost:8080/jlink/holiday/batchSave](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+    "holidayDates":["2019-02-03","2019-02-04"],
+    "festival":1//1为节日，0为周末
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###8.2<span id="holiday-query">分页查询</span>
+- **请求URL**
+>[localhost:8080/jlink/holiday/query](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+festival:0//1为节日，0为周末
+page:1//页数
+per:10//条数
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "list": [
+            "2019-01-03T00:00:00+08:00",
+            "2019-01-04T00:00:00+08:00",
+            ...
+        ],
+        "count": 22//总条数
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###8.3<span id="holiday-batchDelete">批量删除</span>
+- **请求URL**
+>[localhost:8080/jlink/holiday/batchDelete](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"ids":[5,6]//id数组
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```

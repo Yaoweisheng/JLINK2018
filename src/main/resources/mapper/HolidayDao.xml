@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jlink.dao.HolidayDao" >
+  <resultMap id="BaseResultMap" type="com.jlink.entity.Holiday" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="festival" property="festival" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="batchSave" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List" >
+    insert ignore into holiday(date, festival)
+    values
+    <foreach collection="holidays" item="item" separator=",">
+      (#{item}, #{festival})
+    </foreach>
+  </insert>
+  <select id="query" resultType="com.jlink.entity.Holiday">
+    select id, date, festival
+    from holiday
+    where festival = #{festival}
+    order by date limit #{offset}, #{limit}
+  </select>
+  <delete id="batchDelete" parameterType="java.util.List">
+    delete from holiday
+    where 1>2
+    or id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>
