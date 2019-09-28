@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jlink.dao.NumRunDao" >
+  <resultMap id="BaseResultMap" type="com.jlink.entity.NumRun" >
+    <result column="NUM_RUNID" property="numRunid" jdbcType="INTEGER" />
+    <result column="OLDID" property="oldid" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="STARTDATE" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="ENDDATE" property="enddate" jdbcType="TIMESTAMP" />
+    <result column="CYLE" property="cyle" jdbcType="SMALLINT" />
+    <result column="UNITS" property="units" jdbcType="SMALLINT" />
+    <result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="query"  resultType="com.jlink.entity.NumRun" >
+    select NUM_RUNID, OLDID, NAME, STARTDATE, ENDDATE, CYLE, UNITS, STARTTIME, ENDTIME
+    from num_run
+    order by NUM_RUNID limit #{offset}, #{limit}
+  </select>
+  <select id="count"  resultType="Integer" >
+    select count(*)
+    from num_run
+  </select>
+  <delete id="delete" parameterType="Integer">
+    delete from num_run where NUM_RUNID = #{id}
+  </delete>
+  <insert id="save" useGeneratedKeys="true" keyProperty="numRunid" parameterType="com.jlink.entity.NumRun">
+    insert into num_run(OLDID, NAME, STARTDATE, ENDDATE, CYLE, UNITS, STARTTIME, ENDTIME)
+    values (#{oldid}, #{name}, #{startdate}, #{enddate}, #{cyle}, #{units}, #{starttime}, #{endtime})
+  </insert>
+  <update id="update" parameterType="com.jlink.entity.NumRun">
+    update num_run
+    set OLDID = #{oldid},
+        NAME = #{name},
+        STARTDATE = #{startdate},
+        ENDDATE = #{enddate},
+        CYLE = #{cyle},
+        UNITS = #{units},
+        STARTTIME = #{starttime},
+        ENDTIME = #{endtime}
+    where NUM_RUNID = #{numRunid}
+  </update>
+</mapper>

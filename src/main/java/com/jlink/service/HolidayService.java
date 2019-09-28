@@ -9,4 +9,5 @@ public interface HolidayService {
     boolean batchSave(HolidayObject holidayObject);
     List<Holiday> query(Integer festival, Integer page, Integer per);
     boolean batchDelete(List<Integer> list);
+    int count(Integer festival);
 }

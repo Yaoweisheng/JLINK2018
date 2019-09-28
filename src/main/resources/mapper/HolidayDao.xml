@@ -27,4 +27,7 @@
       #{item}
     </foreach>
   </delete>
+  <select id="count" resultType="Integer">
+    select count(*) from holiday where festival = #{festival}
+  </select>
 </mapper>

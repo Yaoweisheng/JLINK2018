@@ -2,6 +2,7 @@ package com.jlink.web;
 
 import com.jlink.dto.HolidayObject;
 import com.jlink.dto.ObjectResult;
+import com.jlink.dto.PagingObject;
 import com.jlink.entity.Holiday;
 import com.jlink.service.HolidayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,10 @@ public class HolidayController {
     @ResponseBody
     public ObjectResult batchSave(@RequestBody HolidayObject holidayObject){
         try{
-            holidayService.batchSave(holidayObject);
-            return ObjectResult.success(null);
+            if(holidayService.batchSave(holidayObject)){
+                return ObjectResult.success(null);
+            }
+            return ObjectResult.error("添加失败");
         }catch (Exception e){
             return ObjectResult.error(e.getMessage());
         }
@@ -30,7 +33,8 @@ public class HolidayController {
     public ObjectResult query(@RequestParam Integer festival, @RequestParam Integer page, @RequestParam Integer per){
         try{
             List<Holiday> list = holidayService.query(festival, page, per);
-            return ObjectResult.success(list);
+            int count = holidayService.count(festival);
+            return ObjectResult.success(new PagingObject<Holiday>(list, count));
         }catch (Exception e){
             return ObjectResult.error(e.getMessage());
         }
@@ -39,8 +43,10 @@ public class HolidayController {
     @ResponseBody
     public ObjectResult batchDelete(@RequestBody HolidayObject holidayObject){
         try{
-            holidayService.batchDelete(holidayObject.getIds());
-            return ObjectResult.success(null);
+            if(holidayService.batchDelete(holidayObject.getIds())){
+                return ObjectResult.success(null);
+            }
+            return ObjectResult.error("删除失败");
         }catch (Exception e){
             return ObjectResult.error(e.getMessage());
         }

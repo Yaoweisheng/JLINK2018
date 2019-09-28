@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jlink.dao.NumRunDeilDao" >
+  <resultMap id="BaseResultMap" type="com.jlink.entity.NumRunDeil" >
+    <result column="NUM_RUNID" property="numRunid" jdbcType="SMALLINT" />
+    <result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="SDAYS" property="sdays" jdbcType="SMALLINT" />
+    <result column="EDAYS" property="edays" jdbcType="SMALLINT" />
+    <result column="SCHCLASSID" property="schclassid" jdbcType="INTEGER" />
+    <result column="OverTime" property="overtime" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="save" parameterType="com.jlink.entity.NumRunDeil" >
+    insert into num_run_deil (NUM_RUNID, STARTTIME, ENDTIME, 
+      SDAYS, EDAYS, SCHCLASSID, 
+      OverTime)
+    values (#{numRunid,jdbcType=SMALLINT}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{sdays,jdbcType=SMALLINT}, #{edays,jdbcType=SMALLINT}, #{schclassid,jdbcType=INTEGER}, 
+      #{overtime,jdbcType=INTEGER})
+  </insert>
+  <select id="query" resultType="com.jlink.entity.NumRunDeil">
+    select * from num_run_deil where NUM_RUNID = #{id} order by NUM_RUNID limit #{offset}, #{limit}
+  </select>
+  <select id="count" resultType="Integer">
+    select count(*) from num_run_deil where NUM_RUNID = #{id}
+  </select>
+  <delete id="delete" parameterType="com.jlink.entity.NumRunDeil">
+    delete from num_run_deil where NUM_RUNID = #{numRunid} and STARTTIME = #{starttime} and SDAYS = #{sdays}
+  </delete>
+</mapper>

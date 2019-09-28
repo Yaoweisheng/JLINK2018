@@ -1327,11 +1327,18 @@ per:10//条数
     "msg": "操作成功",
     "data": {
         "list": [
-            "2019-01-03T00:00:00+08:00",
-            "2019-01-04T00:00:00+08:00",
-            ...
+            {
+                "id": 7,
+                "date": 1549152000000,
+                "festival": 1
+            },
+            {
+                "id": 8,
+                "date": 1549238400000,
+                "festival": 1
+            }
         ],
-        "count": 22//总条数
+        "count": 2
     }
 }
 ```
@@ -1373,6 +1380,613 @@ per:10//条数
     "code": "200",
     "msg": "操作成功",
     "data": null
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+##9<span id="numRun">班次管理</span>
+###9.1<span id="numRun-query">班次查询</span>
+- **请求URL**
+>[localhost:8080/jlink/numRun/query](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+page=1
+per=10
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "list": [
+            {
+                "numRunid": 1,
+                "oldid": -1,
+                "name": "正常班",
+                "startdate": 946684800000,
+                "enddate": 1528588800000,
+                "cyle": 1,//班次一次循环的周期
+                "units": 1,//周期单位
+                "starttime": 1533627000000,
+                "endtime": 1533655800000
+            },
+            ...
+        ],
+        "count": 7
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###9.2<span id="numRun-delete">删除</span>
+- **请求URL**
+>[localhost:8080/jlink/numRun/delete](#)
+- **请求方式**
+>**DELETE**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+id=60
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###9.3<span id="numRun-save">保存</span>
+- **请求URL**
+>[localhost:8080/jlink/numRun/save](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"cyle": 1,
+	"enddate": "2099-12-31 00:00:00",
+	"endtime": "13:06:18",
+	"name": "123",
+	"oldid": -1,
+	"startdate": "2000-01-01 00:00:00",
+	"starttime": "13:06:11",
+	"units": 2
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "numRunid": 66,
+        "oldid": -1,
+        "name": "123",
+        "startdate": "2000-01-01 00:00:00",
+        "enddate": "2099-12-31 00:00:00",
+        "cyle": 1,
+        "units": 2,
+        "starttime": "13:06:11",
+        "endtime": "13:06:18"
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+
+###9.4<span id="numRun-save">更新</span>
+- **请求URL**
+>[localhost:8080/jlink/numRun/update](#)
+- **请求方式**
+>**PUT**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"numRunid":62,
+	"cyle": 1,
+	"enddate": "2099-12-31 00:00:00",
+	"endtime": "13:06:18",
+	"name": "123",
+	"oldid": -1,
+	"startdate": "2000-01-01 00:00:00",
+	"starttime": "13:06:11",
+	"units": 2
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "numRunid": 62,
+        "oldid": -1,
+        "name": "123",
+        "startdate": "2000-01-01 00:00:00",
+        "enddate": "2099-12-31 00:00:00",
+        "cyle": 1,
+        "units": 2,
+        "starttime": "13:06:11",
+        "endtime": "13:06:18"
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+##10<span id="schClass">班次时段管理</span>
+###10.1<span id="schClass-query">查询</span>
+- **请求URL**
+>[localhost:8080/jlink/schClass/query](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+page=1
+per=10
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "list": [
+            {
+                "id": 1,
+                "schName": "打卡时段1-上午",
+                "startTime": "1899-12-30T15:30:00",
+                "endTime": "1899-12-30T18:50:00",
+                "lateMinutes": 10,
+                "earlyMinutes": 10,
+                "checkIn": 1,
+                "checkOut": 1,
+                "checkInTime1": "1899-12-30T15:00:00",
+                "checkInTime2": "1899-12-30T15:35:00",
+                "checkOutTime1": "1899-12-31T02:00:00",
+                "checkOutTime2": "1899-12-31T02:00:00",
+                "color": 16715535,
+                "autoBind": 1,
+                "workDay": 0.5,
+                "sensorId": null,
+                "workMins": 0.0
+            },
+            ...
+        ],
+        "count": 13
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###10.2<span id="schClass-delete">删除</span>
+- **请求URL**
+>[localhost:8080/jlink/schClass/delete](#)
+- **请求方式**
+>**DELETE**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+id=60
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###10.3<span id="schClass-save">保存</span>
+- **请求URL**
+>[localhost:8080/jlink/schClass/save](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"autoBind": 1,
+	"checkIn": "1",
+	"checkInTime1": "1899-12-30T11:00:00",
+	"checkInTime2": "1899-12-30T12:10:00",
+	"checkOut": "1",
+	"checkOutTime1": "1899-12-30T15:30:00",
+	"checkOutTime2": "1899-12-30T16:00:47",
+	"color": null,
+	"earlyMinutes": 10,
+	"endTime": "1899-12-30T15:30:00",
+	"lateMinutes": 10,
+	"sensorId": null,
+	"startTime": "1899-12-30T11:35:00",
+	"workDay": 1,
+	"workMins": null,
+	"schClassid": 51,
+	"schName": "白班下午"
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "id": 60,
+        "schName": "白班下午",
+        "startTime": "1899-12-30T11:35:00",
+        "endTime": "1899-12-30T15:30:00",
+        "lateMinutes": 10,
+        "earlyMinutes": 10,
+        "checkIn": 1,
+        "checkOut": 1,
+        "checkInTime1": "1899-12-30T11:00:00",
+        "checkInTime2": "1899-12-30T12:10:00",
+        "checkOutTime1": "1899-12-30T15:30:00",
+        "checkOutTime2": "1899-12-30T16:00:47",
+        "color": null,
+        "autoBind": 1,
+        "workDay": 1.0,
+        "sensorId": null,
+        "workMins": null
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+
+###10.4<span id="numRun-save">更新</span>
+- **请求URL**
+>[localhost:8080/jlink/numRun/update](#)
+- **请求方式**
+>**PUT**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+    "id": 60,
+    "schName": "白班下午",
+    "startTime": "1899-12-30T11:35:00",
+    "endTime": "1899-12-30T15:30:00",
+    "lateMinutes": 10,
+    "earlyMinutes": 10,
+    "checkIn": 1,
+    "checkOut": 1,
+    "checkInTime1": "1899-12-30T11:00:00",
+    "checkInTime2": "1899-12-30T12:10:00",
+    "checkOutTime1": "1899-12-30T15:30:00",
+    "checkOutTime2": "1899-12-30T16:00:47",
+    "color": null,
+    "autoBind": 1,
+    "workDay": 1.0,
+    "sensorId": null,
+    "workMins": null
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "id": 60,
+        "schName": "白班下午",
+        "startTime": "1899-12-30T11:35:00",
+        "endTime": "1899-12-30T15:30:00",
+        "lateMinutes": 10,
+        "earlyMinutes": 10,
+        "checkIn": 1,
+        "checkOut": 1,
+        "checkInTime1": "1899-12-30T11:00:00",
+        "checkInTime2": "1899-12-30T12:10:00",
+        "checkOutTime1": "1899-12-30T15:30:00",
+        "checkOutTime2": "1899-12-30T16:00:47",
+        "color": null,
+        "autoBind": 1,
+        "workDay": 1.0,
+        "sensorId": null,
+        "workMins": null
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+##11<span id="schClass">班次排版时段管理</span>
+###11.1<span id="numRun-queryDeils">查询</span>
+- **请求URL**
+>[localhost:8080/jlink/numRun/queryDeils](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+id=1
+page=1
+per=10
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "list": [
+            {
+                "numRunid": 1,
+                "starttime": -2209134600000,
+                "endtime": -2209120200000,
+                "sdays": 1,
+                "edays": 1,
+                "schclassid": 1,
+                "overtime": 0
+            },
+            ...
+        ],
+        "count": 15
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###10.2<span id="numRun-deleteDeil">删除</span>
+- **请求URL**
+>[localhost:8080/jlink/numRun/deleteDeil](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"numRunid": 1,
+	"schclassid": 2,
+	"sdays": 1
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###10.3<span id="numRun-saveDeil">保存</span>
+- **请求URL**
+>[localhost:8080/jlink/numRun/saveDeil](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"edays": 1,
+	"numRunid": 1,
+	"schclassid": 2,
+	"sdays": 1
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "numRunid": 1,
+        "starttime": -2209120800000,
+        "endtime": -2209104000000,
+        "sdays": 1,
+        "edays": 1,
+        "schclassid": 2,
+        "overtime": null
+    }
 }
 ```
 - **说明**

@@ -28,4 +28,9 @@ public class HolidayServiceImpl implements HolidayService {
     public boolean batchDelete(List<Integer> list) {
         return holidayDao.batchDelete(list) > 0;
     }
+
+    @Override
+    public int count(Integer festival) {
+        return holidayDao.count(festival);
+    }
 }

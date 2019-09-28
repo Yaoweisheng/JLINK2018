@@ -9,4 +9,5 @@ public interface HolidayDao {
     int batchSave(List<Date> holidays, Integer festival);
     List<Holiday> query(Integer festival, Integer offset, Integer limit);
     int batchDelete(List<Integer> list);
+    int count(int festival);
 }
