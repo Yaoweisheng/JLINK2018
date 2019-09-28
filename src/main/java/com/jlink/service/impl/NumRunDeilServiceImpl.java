@@ -34,4 +34,9 @@ public class NumRunDeilServiceImpl implements NumRunDeilService {
     public int count(Integer id) {
         return numRunDeilDao.count(id);
     }
+
+    @Override
+    public boolean deleteById(Integer id) {
+        return numRunDeilDao.deleteById(id) > 0;
+    }
 }

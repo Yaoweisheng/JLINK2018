@@ -64,3 +64,6 @@
 2019-09-28 22:54:39.353 [main] INFO  com.jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 18600 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
 2019-09-28 22:54:39.363 [main] INFO  com.jlink.Application - No active profile set, falling back to default profiles: default
 2019-09-28 22:54:52.991 [main] INFO  com.jlink.Application - Started Application in 14.476 seconds (JVM running for 27.992)
+2019-09-28 23:09:56.827 [main] INFO  com.jlink.Application - Starting Application on DESKTOP-0B1C21B with PID 13492 (E:\JLink2018_JAVA\JLINK2018\target\classes started by YWS in E:\JLink2018_JAVA\JLINK2018)
+2019-09-28 23:09:56.847 [main] INFO  com.jlink.Application - No active profile set, falling back to default profiles: default
+2019-09-28 23:10:11.675 [main] INFO  com.jlink.Application - Started Application in 16.5 seconds (JVM running for 31.68)

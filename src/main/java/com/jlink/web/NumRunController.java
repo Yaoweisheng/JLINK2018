@@ -48,7 +48,7 @@ public class NumRunController {
     @ResponseBody
     public ObjectResult batchDelete(@RequestParam Integer id){
         try{
-            if(numRunService.delete(id)){
+            if(numRunDeilService.deleteById(id) && numRunService.delete(id)){
                 return ObjectResult.success(null);
             }
             return ObjectResult.error("删除失败");

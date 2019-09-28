@@ -27,4 +27,7 @@
   <delete id="delete" parameterType="com.jlink.entity.NumRunDeil">
     delete from num_run_deil where NUM_RUNID = #{numRunid} and STARTTIME = #{starttime} and SDAYS = #{sdays}
   </delete>
+  <delete id="deleteById" parameterType="Integer">
+    delete from num_run_deil where NUM_RUNID = #{id}
+  </delete>
 </mapper>

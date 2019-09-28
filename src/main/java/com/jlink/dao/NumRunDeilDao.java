@@ -9,4 +9,5 @@ public interface NumRunDeilDao {
     int delete(NumRunDeil numRunDeil);
     List<NumRunDeil> query(Integer id, Integer offset, Integer limit);
     int count(Integer id);
+    int deleteById(Integer id);
 }
