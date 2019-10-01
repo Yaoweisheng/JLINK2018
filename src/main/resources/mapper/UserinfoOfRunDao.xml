@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jlink.dao.UserinfoOfRunDao" >
+  <resultMap id="BaseResultMap" type="com.jlink.entity.UserinfoOfRun" >
+    <result column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
+    <result column="num_run_id" property="numRunId" jdbcType="INTEGER" />
+    <result column="startdate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="enddate" property="enddate" jdbcType="TIMESTAMP" />
+    <result column="is_not_of_run" property="isNotOfRun" jdbcType="INTEGER" />
+    <result column="order_run" property="orderRun" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="save" parameterType="com.jlink.entity.UserinfoOfRun" >
+    insert into userinfo_of_run (userinfo_id, num_run_id, startdate,
+      enddate, is_not_of_run, order_run
+      )
+    values (#{userinfoId,jdbcType=INTEGER}, #{numRunId,jdbcType=INTEGER}, #{startdate,jdbcType=TIMESTAMP},
+      #{enddate,jdbcType=TIMESTAMP}, #{isNotOfRun,jdbcType=INTEGER}, #{orderRun,jdbcType=INTEGER}
+      )
+  </insert>
+  <select id="query" resultType="com.jlink.entity.UserinfoOfRun">
+    select * from userinfo_of_run
+    join userinfo on userinfo_of_run.userinfo_id = userinfo.UserId
+    <if test="deptNo != null and deptNo != ''">
+      and userinfo.DEPT_NO like #{deptNo}"%"
+    </if>
+    <if test="name != null and name != ''">
+      and userinfo.NAME like #{name}"%"
+    </if>
+    where 1 = 1
+    <if test="numRunId != null and numRunId != ''">
+      and num_run_id = #{numRunId}
+    </if>
+    limit #{offset}, #{limit}
+  </select>
+  <select id="count" resultType="Integer">
+    select count(*) from userinfo_of_run
+    join userinfo on userinfo_of_run.userinfo_id = userinfo.UserId
+    <if test="deptNo != null and deptNo != ''">
+      and userinfo.DEPT_NO like #{deptNo}"%"
+    </if>
+    <if test="name != null and name != ''">
+      and userinfo.NAME like "%"#{name}"%"
+    </if>
+    where 1 = 1
+    <if test="numRunId != null and numRunId != ''">
+      and num_run_id = #{numRunId}
+    </if>
+  </select>
+  <insert id="batchSave" parameterType="java.util.List">
+    insert ignore into userinfo_of_run (userinfo_id, num_run_id, startdate,
+    enddate, is_not_of_run, order_run
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userinfoId,jdbcType=INTEGER}, #{item.numRunId,jdbcType=INTEGER}, #{item.startdate,jdbcType=TIMESTAMP},
+      #{item.enddate,jdbcType=TIMESTAMP}, #{item.isNotOfRun,jdbcType=INTEGER}, #{item.orderRun,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
+  <delete id="batchDelete" parameterType="java.util.List">
+    delete from userinfo_of_run where
+    <foreach collection="list" item="item" separator="or">
+      userinfo_id = #{item.userinfoId,jdbcType=INTEGER}
+      and num_run_id = #{item.numRunId,jdbcType=INTEGER}
+      and startdate = #{item.startdate,jdbcType=TIMESTAMP}
+      and enddate = #{item.enddate,jdbcType=TIMESTAMP}
+    </foreach>
+  </delete>
+  <select id="getByUserinfoId" resultType="com.jlink.entity.UserinfoOfRun" parameterType="Integer">
+    select * from userinfo_of_run where userinfo_id = #{userinfoId};
+  </select>
+</mapper>

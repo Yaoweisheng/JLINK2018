@@ -1852,7 +1852,7 @@ id=60
     "msg": "请重新登录"
 }
 ```
-##11<span id="schClass">班次排版时段管理</span>
+##11<span id="schClass">班次排班时段管理</span>
 ###11.1<span id="numRun-queryDeils">查询</span>
 - **请求URL**
 >[localhost:8080/jlink/numRun/queryDeils](#)
@@ -1907,7 +1907,7 @@ per=10
 }
 ```
 
-###10.2<span id="numRun-deleteDeil">删除</span>
+###11.2<span id="numRun-deleteDeil">删除</span>
 - **请求URL**
 >[localhost:8080/jlink/numRun/deleteDeil](#)
 - **请求方式**
@@ -1949,7 +1949,7 @@ per=10
 }
 ```
 
-###10.3<span id="numRun-saveDeil">保存</span>
+###11.3<span id="numRun-saveDeil">保存</span>
 - **请求URL**
 >[localhost:8080/jlink/numRun/saveDeil](#)
 - **请求方式**
@@ -1987,6 +1987,163 @@ per=10
         "schclassid": 2,
         "overtime": null
     }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+##11<span id="schClass">人员排班管理</span>
+###11.1<span id="userinfoOfRun-query">查询</span>
+- **请求URL**
+>[localhost:8080/jlink/userinfoOfRun/query](#)
+- **请求方式**
+>**GET**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+numRunId=班次ID
+deptNo=部门ID
+name=人员姓名（模糊查询）
+page=1
+per=10
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": {
+        "list": [
+            {
+                "userinfoId": 130,
+                "badgenumber": "00000130",
+                "departmentName": null,
+                "name": "刘磊",
+                "startDate": "2000-01-01",
+                "endDate": "2099-12-31"
+            },
+            ...
+        ],
+        "count": 15
+    }
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+
+###11.2<span id="userinfoOfRun-batchSave">批量新增</span>
+- **请求URL**
+>[localhost:8080/jlink/userinfoOfRun/batchSave](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"list":[
+            {
+                "userinfoId": 130,
+                "numRunId": 66,
+                "startdate": "2000-01-01",
+                "enddate": "2099-12-31"
+            }]
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
+}
+```
+- **说明**
+
+> 未登录:
+```
+{
+    "code": "403",
+    "data": null,
+    "msg": "请重新登录"
+}
+```
+> 人员排班时间冲突:
+```
+{
+    "code": "400",
+    "msg": "刘磊排班时间冲突",
+    "data": null
+}
+```
+
+
+###11.2<span id="userinfoOfRun-batchDelete">批量删除</span>
+- **请求URL**
+>[localhost:8080/jlink/userinfoOfRun/batchDelete](#)
+- **请求方式**
+>**POST**
+- **Headers**
+>
+```
+| :-------- | :--------|
+| Content-Type| application/json|
+|token | token |
+```
+- **请求参数**
+>
+```
+{
+	"list":[
+            {
+                "userinfoId": 130,
+                "numRunId": 66,
+                "startdate": "2000-01-01",
+                "enddate": "2099-12-31"
+            }]
+}
+```
+
+- **返回示例**
+>
+```
+{
+    "code": "200",
+    "msg": "操作成功",
+    "data": null
 }
 ```
 - **说明**

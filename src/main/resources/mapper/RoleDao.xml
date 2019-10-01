@@ -30,7 +30,7 @@
 		(#{name},#{code},#{createTime}, #{isDelete}, #{isActive})
 	</insert>
 
-    <update id="updateRole" keyProperty="roleId" >
+    <update id="updateRole" >
         update role
         set name = #{name},
             code = #{code},

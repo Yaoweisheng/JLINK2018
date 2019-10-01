@@ -118,7 +118,7 @@
     OVERTIME, SEP, HOLIDAY,
     MINZU, CardNo, DEPT_NO,
     LeaveDate, DEFAULTDEPTID)
-    values
+  values
     <foreach collection="list" item="item" separator=",">
       (#{item.badgenumber,jdbcType=VARCHAR}, #{item.ssn,jdbcType=VARCHAR},
       #{item.name,jdbcType=VARCHAR}, #{item.gender,jdbcType=VARCHAR}, #{item.title,jdbcType=VARCHAR},
